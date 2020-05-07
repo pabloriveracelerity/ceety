@@ -2,7 +2,7 @@
 ceety cms
 
 
-#rebuild 
+# rebuild 
 `docker-compose up --build`
 
 
