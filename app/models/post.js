@@ -6,7 +6,8 @@ const Crypto = require('crypto');
 const Nodemailer = require('nodemailer');
 //const gmailConfig = require('config').get('email.gmail');
 const Promise = require('promise');
-
+const PostStatus = require('./PostStatus');
+const UserPost = require('./userPost');
 
 var PostSchema = new Schema({
     body: {
@@ -27,3 +28,25 @@ var PostSchema = new Schema({
 
 
 Mongoose.model('Post', PostSchema);
+
+function createPost(title, body, user){
+    // create post 
+    const post = new Post({
+        title: title,
+        body: body,
+    })
+    // create user post
+    const userPost = new UserPost({
+        user: user,
+        post: post
+    })
+    // create post status 
+    const postStatus = new PostStatus({
+        post: post
+    })
+return {post:post, userpost: userPost, poststatus: postStatus};
+}
+
+
+
+

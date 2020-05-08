@@ -7,29 +7,16 @@ const Nodemailer = require('nodemailer');
 //const gmailConfig = require('config').get('email.gmail');
 const Promise = require('promise');
 
-var userPostSchema = new Schema({
+var UserPostSchema = new Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId, ref: 'UserSchema'
-    }
-
-});
-
-var userPostSchema = new Schema({
-    body: {
-        type: String,
-        trim: false, 
-        default: '',
     },
-    dateCreated: {
-        type: Date,
-        default: Date.now
-    },
-    title: {
-        type: String,
-        trim: true,
-        default: '',
+    post: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'PostSchema'
     }
 });
 
 
-Mongoose.model('Post', PostSchema);
+
+
+Mongoose.model('UserPost', UserPostSchema);
